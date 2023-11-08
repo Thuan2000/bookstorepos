@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="1024.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.thuannguyen.bookstorepos.scenes.MainSceneController">
+   <children>
+      <SplitPane dividerPositions="0.19648829431438128" layoutX="-1.0" nodeOrientation="LEFT_TO_RIGHT" pickOnBounds="false" prefHeight="1028.0" prefWidth="1029.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <Button layoutX="-1.0" mnemonicParsing="false" prefHeight="205.0" prefWidth="201.0" text="Checkout Item" wrapText="true">
+                     <font>
+                        <Font name="System Italic" size="16.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="-4.0" layoutY="205.0" mnemonicParsing="false" prefHeight="212.0" prefWidth="208.0" text="Manage Books" wrapText="true">
+                     <font>
+                        <Font name="System Italic" size="16.0" />
+                     </font>
+                  </Button>
+                  <Button layoutY="417.0" mnemonicParsing="false" prefHeight="207.0" prefWidth="203.0" text="Promotions Management" textAlignment="CENTER" wrapText="true">
+                     <font>
+                        <Font name="System Italic" size="16.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1026.0" prefWidth="853.0">
+               <children>
+                  <TableView layoutY="39.0" prefHeight="289.0" prefWidth="822.0">
+                    <columns>
+                      <TableColumn prefWidth="75.0" text="Time" />
+                      <TableColumn editable="false" prefWidth="89.0" text="Customer" />
+                        <TableColumn editable="false" prefWidth="90.0" text="Book Name" />
+                        <TableColumn editable="false" prefWidth="76.0" text="Quantity" />
+                        <TableColumn editable="false" prefWidth="104.0" text="Price per Unit" />
+                        <TableColumn editable="false" prefWidth="72.0" text="Total" />
+                    </columns>
+                  </TableView>
+                  <Label layoutX="14.0" layoutY="14.0" text="Checkouts Information" />
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>
