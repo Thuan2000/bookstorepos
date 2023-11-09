@@ -6,27 +6,35 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.scene.Node;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class LoginSceneController {
     @FXML
-    private Label welcomeText;
+    private Label inputText;
 
     @FXML
-    protected void onHelloButtonClick(ActionEvent event) throws IOException {
+    private TextField usernameInput;
 
-        welcomeText.setText("Welcome to JavaFX Application!");
-        // TODO: How to get the current JAVAFX stage
+    @FXML
+    private TextField passwordInput;
+
+    @FXML
+    protected void onLoginButtonClick(ActionEvent event) throws IOException {
+        String username = usernameInput.getText();
+        String password = passwordInput.getText();
+
+        if (!Objects.equals(username, "admin") || !Objects.equals(password, "admin")) {
+            inputText.setText("Username or password is incorrect!");
+            return;
+        }
 
         Node source = (Node) event.getSource();  // Cast the event source to Node
         Stage stage = (Stage) source.getScene().getWindow();  // Get the stage from the scene of the source
-
-        // Now you can use the 'stage' variable to interact with the current stage
-        // For example, to close the current window you can call:
-        // stage.close();
 
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("main-scene.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1024, 1024);
