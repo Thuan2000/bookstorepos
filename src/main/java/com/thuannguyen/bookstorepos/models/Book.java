@@ -9,7 +9,7 @@ public class Book {
         this.title = title;
         this.author = author;
         this.price = price;
-        // Save to database if formatted title is unique. Throws error and display if otherwise.
+        // Save to database if formatted title is unique. Throws error and display if otherwise. Perhaps a job for the controller.
     }
     public String getTitle() {
         return title;

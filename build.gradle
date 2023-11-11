@@ -1,3 +1,5 @@
+import java.sql.DriverManager
+
 plugins {
     id 'java'
     id 'application'
@@ -42,6 +44,9 @@ dependencies {
     implementation('org.kordamp.ikonli:ikonli-javafx:12.3.1')
     implementation('org.kordamp.bootstrapfx:bootstrapfx-core:0.4.0')
 
+    // MySQL JDBC Driver
+    implementation ('mysql:mysql-connector-java:8.0.23')
+
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
 }
@@ -60,4 +65,32 @@ jlink {
 
 jlinkZip {
     group = 'distribution'
+}
+
+task setupDatabase() {
+    doLast {
+        // Set up the class loader with the runtime classpath
+        URLClassLoader classLoader = GroovyObject.class.classLoader
+        project.configurations.runtimeClasspath.each { classLoader.addURL(it.toURI().toURL()) }
+
+        // Load JDBC driver
+        Class.forName('com.mysql.cj.jdbc.Driver', true, classLoader)
+
+        // Configuration
+        def url = 'jdbc:mysql://localhost:3306/bookstore'
+        def user = 'thuan'
+        def password = '123!@#'
+
+        // Connect to the database
+        def connection = DriverManager.getConnection(url, user, password)
+
+        // Execute SQL scripts
+        def schemaScript = new File('src/main/resources/db/schema.sql')
+        def dataScript = new File('src/main/resources/db/data.sql')
+        connection.createStatement().execute(schemaScript.text)
+        connection.createStatement().execute(dataScript.text)
+
+        // Close the connection
+        connection.close()
+    }
 }

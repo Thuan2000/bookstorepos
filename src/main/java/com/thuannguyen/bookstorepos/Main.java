@@ -5,6 +5,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.sql.*;
+
 import java.io.IOException;
 
 public class Main extends Application {
@@ -16,7 +18,17 @@ public class Main extends Application {
         stage.setScene(scene);
         stage.show();
     }
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
+        // Just testing things out here.
+        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/bookstore", "thuan", "123!@#");
+        Statement statement = connection.createStatement();
+
+        ResultSet resultSet = statement.executeQuery("select * from Users");
+
+        while(resultSet.next()) {
+            System.out.println(resultSet.getString("username"));
+        }
+
         launch();
     }
 }
