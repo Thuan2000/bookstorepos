@@ -84,11 +84,21 @@ task setupDatabase() {
         // Connect to the database
         def connection = DriverManager.getConnection(url, user, password)
 
-        // Execute SQL scripts
-        def schemaScript = new File('src/main/resources/db/schema.sql')
-        def dataScript = new File('src/main/resources/db/data.sql')
-        connection.createStatement().execute(schemaScript.text)
-        connection.createStatement().execute(dataScript.text)
+        // Create tables
+        def createBookTableScript = new File('src/main/resources/db/migration/create-book.sql')
+        def createOrderTableScript = new File('src/main/resources/db/migration/create-order.sql')
+        def createOrderDetailsTableScript = new File('src/main/resources/db/migration/create-order-details.sql')
+        connection.createStatement().execute(createBookTableScript.text)
+        connection.createStatement().execute(createOrderTableScript.text)
+        connection.createStatement().execute(createOrderDetailsTableScript.text)
+
+        // Insert fake seed data
+        def insertBooksScript = new File('src/main/resources/db/seed/insert-books.sql')
+        def insertOrdersScript = new File('src/main/resources/db/seed/insert-orders.sql')
+        def insertOrderDetailsScript = new File('src/main/resources/db/seed/insert-order-details.sql')
+        connection.createStatement().execute(insertBooksScript.text)
+        connection.createStatement().execute(insertOrdersScript.text)
+        connection.createStatement().execute(insertOrderDetailsScript.text)
 
         // Close the connection
         connection.close()
