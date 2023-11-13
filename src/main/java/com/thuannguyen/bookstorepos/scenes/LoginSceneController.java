@@ -9,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.scene.Node;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -37,8 +38,9 @@ public class LoginSceneController {
         Stage stage = (Stage) source.getScene().getWindow();  // Get the stage from the scene of the source
 
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("main-scene.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 1024, 1024);
+        Scene scene = new Scene(fxmlLoader.load(), 800, 500);
         stage.setTitle("Bookstore POS");
         stage.setScene(scene);
+        stage.centerOnScreen();
     }
 }
