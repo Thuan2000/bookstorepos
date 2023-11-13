@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.thuannguyen.bookstorepos.scenes.ManageBooksPageController">
    <children>
-      <Text layoutX="259.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Manage Books" />
+      <Text layoutX="6.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Manage Books" />
+      <TableView fx:id="booksTable" layoutX="6.0" layoutY="40.0" prefHeight="355.0" prefWidth="589.0">
+        <columns>
+            <TableColumn fx:id="titleColumn" prefWidth="208.0" text="Title" />
+            <TableColumn fx:id="authorColumn" prefWidth="180.0" text="Author" />
+            <TableColumn fx:id="priceColumn" prefWidth="106.0" text="Price" />
+            <TableColumn fx:id="actionsColumn" prefWidth="94.0" text="Actions" />
+        </columns>
+      </TableView>
    </children>
 </AnchorPane>

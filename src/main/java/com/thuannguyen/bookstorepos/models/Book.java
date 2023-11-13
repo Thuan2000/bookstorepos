@@ -1,30 +1,23 @@
 package com.thuannguyen.bookstorepos.models;
 
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleStringProperty;
+
 public class Book {
-    private String title;
-    private String author;
-    private double price;
+    private final SimpleStringProperty title;
+    private final SimpleStringProperty author;
+    private final SimpleDoubleProperty price;
 
     public Book(String title, String author, double price) {
-        this.title = title;
-        this.author = author;
-        this.price = price;
-        // Save to database if formatted title is unique. Throws error and display if otherwise. Perhaps a job for the controller.
-    }
-    public String getTitle() {
-        return title;
+        this.title = new SimpleStringProperty(title);
+        this.author = new SimpleStringProperty(author);
+        this.price = new SimpleDoubleProperty(price);
     }
 
-    public String getAuthor() {
-        return author;
-    }
+    // Getters
+    public String getTitle() { return title.get(); }
+    public String getAuthor() { return author.get(); }
+    public double getPrice() { return price.get(); }
 
-    public double getPrice() {
-        return price;
-    }
-
-    @Override
-    public String toString() {
-        return title + " by " + author + " - $" + price;
-    }
+    // Other methods...
 }

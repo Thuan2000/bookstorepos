@@ -17,6 +17,11 @@ public class MainSceneController {
     private BorderPane rootPane;
 
     @FXML
+    public void initialize() throws IOException {
+        this.onSidebarOrdersInformationClick(null); // Default view
+    }
+
+    @FXML
     protected void onSidebarOrdersInformationClick(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(Main.class.getResource("orders-page.fxml"));
         Node page = loader.load();

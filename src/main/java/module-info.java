@@ -13,4 +13,5 @@ module com.thuannguyen.bookstorepos {
     exports com.thuannguyen.bookstorepos;
     exports com.thuannguyen.bookstorepos.scenes;
     opens com.thuannguyen.bookstorepos.scenes to javafx.fxml;
+    opens com.thuannguyen.bookstorepos.models;
 }
