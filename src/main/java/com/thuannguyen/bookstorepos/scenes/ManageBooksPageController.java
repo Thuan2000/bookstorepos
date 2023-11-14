@@ -1,6 +1,7 @@
 package com.thuannguyen.bookstorepos.scenes;
 
 import com.thuannguyen.bookstorepos.Main;
+import com.thuannguyen.bookstorepos.controllers.BookController;
 import com.thuannguyen.bookstorepos.models.Book;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,6 +15,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Objects;
 
 public class ManageBooksPageController {
@@ -33,11 +35,8 @@ public class ManageBooksPageController {
     @FXML
     private TableColumn<Book, Void> actionsColumn;
     @FXML
-    public void initialize() {
-        ObservableList<Book> data = FXCollections.observableArrayList(
-                new Book("Example Hard-coded 1", "Thuan Nguyen 1", 100),
-                new Book("Example Hard-coded 2", "Thuan Nguyen 2", 200)
-        );
+    public void initialize() throws SQLException {
+        ObservableList<Book> books = BookController.getAllBooks();
 
         // Set cell value factories for the columns
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
@@ -63,6 +62,6 @@ public class ManageBooksPageController {
             }
         });
 
-        booksTable.setItems(data);
+        booksTable.setItems(books);
     }
 }
