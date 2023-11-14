@@ -24,6 +24,8 @@ public class ManageBooksPageController {
     private TableView<Book> booksTable;
 
     @FXML
+    private TableColumn<Book, Integer> idColumn;
+    @FXML
     private TableColumn<Book, String> titleColumn;
 
     @FXML
@@ -39,6 +41,7 @@ public class ManageBooksPageController {
         ObservableList<Book> books = BookController.getAllBooks();
 
         // Set cell value factories for the columns
+        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
         authorColumn.setCellValueFactory(new PropertyValueFactory<>("author"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));

@@ -15,11 +15,12 @@ public class BookController {
         ObservableList<Book> books = FXCollections.observableArrayList();
 
         while (resultSet.next()) {
+            int id = resultSet.getInt("id");
             String title = resultSet.getString("title");
             String author = resultSet.getString("author");
-            int price = resultSet.getInt("price");
+            double price = resultSet.getDouble("price");
 
-            Book book = new Book(title, author, price);
+            Book book = new Book(id, title, author, price);
             books.add(book);
         }
 
