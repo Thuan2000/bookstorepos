@@ -4,6 +4,7 @@ import com.thuannguyen.bookstorepos.Main;
 import com.thuannguyen.bookstorepos.controllers.BookController;
 import com.thuannguyen.bookstorepos.models.Book;
 import com.thuannguyen.bookstorepos.models.CartItem;
+import com.thuannguyen.bookstorepos.models.OrderDisplay;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
@@ -17,6 +18,9 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -48,6 +52,9 @@ public class CheckoutPageController {
     @FXML
     private Text orderCostText;
 
+    @FXML
+    private double totalCost;
+
     private List<CartItem> cart = new ArrayList<>();
 
     @FXML
@@ -69,8 +76,36 @@ public class CheckoutPageController {
         });
         addToCartButton.setOnAction(e -> addToCart());
         checkoutButton.setOnAction(e -> {
+            try {
+                saveOrderToDatabase();
+            } catch (SQLException ex) {
+                // Handle SQL Exception
+                ex.printStackTrace();
+            }
             showCheckoutDialog();
         });
+    }
+
+    private void saveOrderToDatabase() throws SQLException {
+        // Database connection details
+        String url = "jdbc:mysql://localhost:3306/bookstore";
+        String user = "thuan";
+        String password = "123!@#";
+
+        // SQL INSERT statement
+        String sql = "INSERT INTO `Order` (books_display, totalPrice) VALUES (?, ?)";
+
+        // Establish a database connection
+        try (Connection connection = DriverManager.getConnection(url, user, password);
+             PreparedStatement pstmt = connection.prepareStatement(sql)) {
+
+            // Set values for the INSERT statement
+            pstmt.setString(1, orderInformationText.getText());
+            pstmt.setDouble(2, totalCost);
+
+            // Execute the INSERT statement
+            pstmt.executeUpdate();
+        }
     }
 
     private void showCheckoutDialog() {
@@ -139,8 +174,9 @@ public class CheckoutPageController {
     }
 
     private void updateTotalOrderCost() {
-        double totalCost = cart.stream().mapToDouble(CartItem::getTotalPrice).sum();
-        orderCostText.setText("Order Cost: " + totalCost);
+        double totalCostTemp = cart.stream().mapToDouble(CartItem::getTotalPrice).sum();
+        orderCostText.setText("Order Cost: " + totalCostTemp);
+        totalCost = totalCostTemp;
     }
 
     private void updateCartItemTotalPrice() {
