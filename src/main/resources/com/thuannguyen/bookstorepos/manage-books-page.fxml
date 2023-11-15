@@ -18,6 +18,6 @@
             <TableColumn fx:id="actionsColumn" prefWidth="123.0" text="Actions" />
         </columns>
       </TableView>
-      <Button layoutX="14.0" layoutY="361.0" mnemonicParsing="false" text="Add New Book" />
+      <Button layoutX="14.0" layoutY="361.0" mnemonicParsing="false" onAction="#onAddNewBookClick" text="Add New Book" />
    </children>
 </AnchorPane>
