@@ -8,14 +8,14 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.thuannguyen.bookstorepos.scenes.ManageBooksPageController">
    <children>
-      <Text layoutX="6.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Manage Books" />
-      <TableView fx:id="booksTable" layoutY="43.0" prefHeight="290.0" prefWidth="606.0">
+      <Text layoutX="16.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Manage Books" />
+      <TableView fx:id="booksTable" layoutX="14.0" layoutY="31.0" prefHeight="317.0" prefWidth="572.0">
         <columns>
             <TableColumn fx:id="idColumn" prefWidth="60.0" text="Id" />
             <TableColumn fx:id="titleColumn" prefWidth="155.0" text="Title" />
-            <TableColumn fx:id="authorColumn" prefWidth="164.0" text="Author" />
-            <TableColumn fx:id="priceColumn" prefWidth="103.0" text="Price" />
-            <TableColumn fx:id="actionsColumn" prefWidth="123.0" text="Actions" />
+            <TableColumn fx:id="authorColumn" prefWidth="149.0" text="Author" />
+            <TableColumn fx:id="priceColumn" prefWidth="110.0" text="Price" />
+            <TableColumn fx:id="actionsColumn" prefWidth="131.0" text="Actions" />
         </columns>
       </TableView>
       <Button layoutX="14.0" layoutY="361.0" mnemonicParsing="false" onAction="#onAddNewBookClick" text="Add New Book" />

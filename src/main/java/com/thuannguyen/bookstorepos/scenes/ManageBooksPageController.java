@@ -129,8 +129,6 @@ public class ManageBooksPageController {
 
                     Optional<ButtonType> result = alert.showAndWait();
                     if (result.isPresent() && result.get() == ButtonType.OK) {
-                        // User chose OK
-                        System.out.println("Deleting book...");
                         currentBook.delete();
 
                         // Reload entire book list from database (might need to optimize it later, if time allows it).
