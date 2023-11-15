@@ -34,6 +34,11 @@ public class Book {
     public String getAuthor() { return author.get(); }
     public double getPrice() { return price.get(); }
 
+    @Override
+    public String toString() {
+        return getTitle(); // Assuming getTitle() returns the book's title
+    }
+
     public void saveToDatabase() {
         Connection conn = null;
         PreparedStatement pstmt = null;
